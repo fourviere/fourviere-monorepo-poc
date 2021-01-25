@@ -1,0 +1,1 @@
+export const meaningOfLife:number = 42;
