@@ -2,6 +2,11 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { meaningOfLife } from "@fourviere/fourviere-ui";
+const { ipcRenderer } = window.require("electron");
+
+function useIpc(obj: { action: string; data: any }) {
+  ipcRenderer.invoke(obj.action, obj.data);
+}
 
 function App() {
   return (
@@ -19,6 +24,9 @@ function App() {
         >
           Learn React {meaningOfLife}
         </a>
+        <button onClick={() => useIpc({ action: "msg", data: "pluto" })}>
+          Send message to electron
+        </button>
       </header>
     </div>
   );
